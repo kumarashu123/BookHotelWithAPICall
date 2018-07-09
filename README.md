@@ -13,8 +13,8 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
-- [Node Service]
-- [Schema create]
+- [Node Service] (Runing Node service)
+- [Schema create] (Create required table)
 
 Create React App is divided into two packages:
 
@@ -114,7 +114,12 @@ install express js library and cors library
 'npm install cors'
 
 Got to server folder and run node server
+
  `node index.js`
+
+##Create Database
+
+create database name as `test`
 
 ##Create needed MySql Table
 Table Member
