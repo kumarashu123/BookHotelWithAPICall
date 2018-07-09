@@ -31,9 +31,11 @@ const MemberDetails = ({ memberDetail }) => {
             </tr>
           </tbody>
         ) : (
-          <tr>
-            <th>Select member from left menu for details</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Select member from left menu for details</th>
+            </tr>
+          </tbody>
         )}
       </table>
     </div>

@@ -6,13 +6,8 @@ import { createUser } from "../actions/signup";
 class SignUp extends Component {
   constructor(props) {
     super(props);
+    this.state = {fname:'', lname:'', email:'', mobile:'', address:'', password:''};
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.name = React.createRef();
-    this.lname = React.createRef();
-    this.email = React.createRef();
-    this.mobile = React.createRef();
-    this.address = React.createRef();
-    this.password = React.createRef();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,15 +19,35 @@ class SignUp extends Component {
     }
   }
 
+  handleFname=(e)=>{
+    this.setState({ fname: e.target.value });
+  }
+
+  handleLname=(e)=>{
+    this.setState({ lname: e.target.value });
+  }
+
+  handleEmail=(e)=>{
+    this.setState({ email: e.target.value });
+  }
+
+  handleMobile=(e)=>{
+    this.setState({ mobile: e.target.value });
+  }
+
+  handleAddress=(e)=>{
+    this.setState({ address: e.target.value });
+  }
+
+  handlePassword=(e)=>{
+    this.setState({ password: e.target.value });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+    const { fname, lname, mobile, email, address, password } = this.state;
     const userData = {
-      fname: this.name.current.value,
-      lname: this.lname.current.value,
-      mobile: this.mobile.current.value,
-      email: this.email.current.value,
-      address: this.address.current.value,
-      password: this.password.current.value
+      fname, lname, mobile, email, address, password
     };
     this.props.createUser(userData);
   }
@@ -51,7 +66,7 @@ class SignUp extends Component {
             <input
               type="text"
               name="firstName"
-              ref={this.name}
+              onChange={this.handleFname}
               required
               className="form-control"
             />
@@ -65,7 +80,7 @@ class SignUp extends Component {
             <input
               type="text"
               name="lastName"
-              ref={this.lname}
+              onChange={this.handleLname}
               required
               className="form-control"
             />
@@ -79,7 +94,7 @@ class SignUp extends Component {
             <input
               type="text"
               name="email"
-              ref={this.email}
+              onChange={this.handleEmail}
               required
               className="form-control"
             />
@@ -93,7 +108,7 @@ class SignUp extends Component {
             <input
               type="text"
               name="mobileNumber"
-              ref={this.mobile}
+              onChange={this.handleMobile}
               required
               className="form-control"
             />
@@ -107,7 +122,7 @@ class SignUp extends Component {
             <input
               type="text"
               name="address"
-              ref={this.address}
+              onChange={this.handleAddress}
               className="form-control"
               required
             />
@@ -121,7 +136,7 @@ class SignUp extends Component {
             <input
               type="password"
               name="password"
-              ref={this.password}
+              onChange={this.handlePassword}
               className="form-control"
               required
             />

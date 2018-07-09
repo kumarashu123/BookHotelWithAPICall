@@ -7,28 +7,28 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      submitted: false
+      userName:"",
+      password:""
     };
-    this.userName = React.createRef();
-    this.password = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleName=(e)=>{
+      this.setState({ userName: e.target.value });
+  }
+
+  handlePassword=(e)=>{
+    this.setState({ password: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ submitted: true });
-    const userName = this.userName.current.value;
-    const password = this.password.current.value;
+    const { userName, password } = this.state;
     this.props.validateUser(userName, password);
   }
 
   render() {
-    const { submitted } = this.state;
-    let loginErrorMsg = "";
-    if (submitted && !this.props.loggedIn) {
-      loginErrorMsg = "Invalid Username or Password.";
-    }
-
+    const { errorMsg } = this.props;
     return (
       <div className="login-container">
         <form onSubmit={this.handleSubmit}>
@@ -41,7 +41,7 @@ class Login extends Component {
               type="email"
               name="userName"
               id="userName"
-              ref={this.userName}
+              onChange={this.handleName}
               required
               className="form-control"
               placeholder="Email"
@@ -52,13 +52,13 @@ class Login extends Component {
             <input
               type="password"
               name="password"
-              ref={this.password}
+              onChange={this.handlePassword}
               required
               className="form-control"
               placeholder="Password"
             />
           </div>
-          <div className="form-group text-danger">{loginErrorMsg}</div>
+          <div className="form-group text-danger">{errorMsg}</div>
           <div className="form-group">
             <button className="btn btn-primary">Login</button>
           </div>
@@ -70,7 +70,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.login.loggedIn
+  loggedIn: state.login.loggedIn,
+  errorMsg: state.login.errorMsg
 });
 
 const mapDispatchToProps = dispatch => ({
