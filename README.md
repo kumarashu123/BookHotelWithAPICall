@@ -117,6 +117,10 @@ Got to server folder and run node server
 
  `node index.js`
 
+##Create Database
+
+create database name as `test`
+
 ##Create needed MySql Table
 Table Member
 
