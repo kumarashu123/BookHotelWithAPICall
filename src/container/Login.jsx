@@ -32,8 +32,8 @@ class Login extends Component {
     return (
       <div className="login-container">
         <form onSubmit={this.handleSubmit}>
-          <div class="form-group">
-            <div class="col-sm-12 login-title">Login to your Account</div>
+          <div className="form-group">
+            <div className="col-sm-12 login-title">Login to your Account</div>
           </div>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -73,7 +73,11 @@ const mapStateToProps = state => ({
   loggedIn: state.login.loggedIn
 });
 
+const mapDispatchToProps = dispatch => ({
+  validateUser: (userName, password) => dispatch(validateUser(userName, password))
+});
+
 export default connect(
   mapStateToProps,
-  { validateUser }
+  mapDispatchToProps
 )(Login);

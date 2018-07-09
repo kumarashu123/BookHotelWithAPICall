@@ -11,7 +11,7 @@ var mysql = require("mysql");
 var connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
-  password: "",
+  password: "root",
   database: "test"
 });
 
@@ -20,9 +20,7 @@ connection.connect();
 app.get("/hotellist", function(req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   connection.query("select * from tbl_hotel", function(error, results, fields) {
-    //debugger;
     if (error) console.log(error);
-    //console.log('The solution is: ', results[0].solution);
     res.send(results);
   });
 });
@@ -34,7 +32,6 @@ app.get("/memberlist", function(req, res) {
     results,
     fields
   ) {
-    //debugger;
     if (error) console.log(error);
     if (results.length == 0) {
       res.status(403);
@@ -46,7 +43,6 @@ app.get("/memberlist", function(req, res) {
 });
 
 app.post("/authuser", function(req, res) {
-  //to get single user
   user = req.body.user;
   pass = req.body.password;
 
@@ -60,13 +56,8 @@ app.post("/authuser", function(req, res) {
       pass +
       '"',
     function(error, results, fields) {
-      //debugger;
-      console.log(results);
       if (error) console.log(error);
-      //console.log('The solution is: ', results[0].solution);
       if (results.length == 0) {
-        //res.send({failure:true,msg:'user not found'});
-        console.log("asdf", typeof results);
         res.status(403);
         res.send();
       } else {
@@ -88,7 +79,7 @@ app.post("/createuser", function(req, res) {
   res.append("Accept", "application/json");
   res.append("Access-Control-Allow-Credentials", "true");
   query =
-    'INSERT INTO TBL_MEMBER (fname, lname, email, mobile, address, password) VALUES ("' +
+    'INSERT INTO tbl_member (fname, lname, email, mobile, address, password) VALUES ("' +
     fname +
     '","' +
     lname +
@@ -102,15 +93,12 @@ app.post("/createuser", function(req, res) {
     pass +
     '")';
   connection.query(query, function(error, results, fields) {
-    //debugger;
     if (error) console.log(error);
-    if (results.length == 0) {
-      //res.send({failure:true,msg:'user not found'});
-      console.log("asdf", typeof results);
+    if (results) {
+      res.send(results);
+    } else {
       res.status(403);
       res.send();
-    } else {
-      res.send(results);
     }
   });
 });

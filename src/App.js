@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { UnauthRoute, AuthRoute } from "react-router-auth";
-import Login from "./component/Login";
-import SignUp from "./component/SignUp";
-import logo from "./logo.svg";
+import Login from "./container/Login";
+import SignUp from "./container/SignUp";
 import "./App.css";
 import Home from "./container/Home";
 import "bootstrap/dist/css/bootstrap.min.css";

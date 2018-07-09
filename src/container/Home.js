@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import MemberList from "../component/MemberList";
 import MemberDetails from "../component/MemberDetails";
 import HotelDetails from "../component/HotelDetails";
@@ -61,7 +60,14 @@ const mapStateToProps = state => ({
   hotelList: state.hotel.hotelList
 });
 
+
+const mapDispatchToProps = dispatch => ({
+  getMemberList: () => dispatch(getMemberList()),
+  getMemberDetails: (data) => dispatch(getMemberDetails(data)),
+  getHotelList: () => dispatch(getHotelList())
+});
+
 export default (Home = connect(
   mapStateToProps,
-  { getMemberList, getMemberDetails, getHotelList }
+  mapDispatchToProps
 )(Home));

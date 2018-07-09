@@ -18,7 +18,7 @@ class SignUp extends Component {
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.userCreated &&
-      this.props.userCreated != nextProps.userCreated
+      this.props.userCreated !== nextProps.userCreated
     ) {
       this.props.history.push("/");
     }
@@ -40,8 +40,8 @@ class SignUp extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div class="form-group row">
-          <div class="col-sm-10">Sign Up</div>
+        <div className="form-group row">
+          <div className="col-sm-10">Sign Up</div>
         </div>
         <div className=" form-group control-group row">
           <label htmlFor="email" className="col-sm-2 col-form-label">
@@ -109,6 +109,7 @@ class SignUp extends Component {
               name="address"
               ref={this.address}
               className="form-control"
+              required
             />
           </div>
         </div>
@@ -122,6 +123,7 @@ class SignUp extends Component {
               name="password"
               ref={this.password}
               className="form-control"
+              required
             />
           </div>
         </div>
@@ -137,8 +139,11 @@ const mapStateToProps = state => ({
   userCreated: state.createUser.userCreated
 });
 
-//export default withRouter(SignUp);
+const mapDispatchToProps = dispatch => ({
+  createUser: (userData) => dispatch(createUser(userData))
+});
+
 export default (SignUp = connect(
   mapStateToProps,
-  { createUser }
+  mapDispatchToProps
 )(withRouter(SignUp)));

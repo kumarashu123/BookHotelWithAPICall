@@ -3,11 +3,11 @@ import React from "react";
 const HotelDetails = ({ hotelDetails, handleBookRoom }) => {
   let hotelDetailsNode = hotelDetails.map((h, i) => (
     <div className="card" key={i}>
-      <img className="card-img-top" src={h.photo_url} alt="Card image cap" />
-      <div class="card-body">
-        <h5 class="card-title">{h.name}</h5>
+      <img className="card-img-top" src={h.photo_url} alt="Card cap" />
+      <div className="card-body">
+        <h5 className="card-title">{h.name}</h5>
 
-        <p class="card-text">
+        <p className="card-text">
           Available Rooms: <strong>{h.total_room}</strong>
         </p>
 
